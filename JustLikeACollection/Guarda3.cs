@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace MyEnumerable
+namespace JustLikeACollection
 {
     public class Guarda3<T> : IEnumerable<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MyEnumerable
+namespace JustLikeACollection
 {
     public class Program
     {
