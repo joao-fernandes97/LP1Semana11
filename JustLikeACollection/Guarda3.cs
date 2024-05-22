@@ -61,5 +61,16 @@ namespace JustLikeACollection
                     throw new IndexOutOfRangeException();
             }
         }
+
+        public void Add(T item)
+        {
+            if (Equals(_var1,default(T)))
+                _var1 = item;
+             else if (Equals(_var2,default(T)))
+                _var2 = item;
+             else if (Equals(_var3,default(T)))
+                _var3 = item;
+            
+        }
     }
 }
