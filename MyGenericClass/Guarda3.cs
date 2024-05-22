@@ -5,9 +5,9 @@ namespace MyGenericClass
 {
     public class Guarda3<T>
     {
-        private readonly T _var1;
-        private readonly T _var2;
-        private readonly T _var3;
+        private T _var1;
+        private T _var2;
+        private T _var3;
 
         public Guarda3()
         {
@@ -26,6 +26,24 @@ namespace MyGenericClass
                     return _var2;
                 case 2:
                     return _var3;
+                default:
+                    throw new IndexOutOfRangeException();
+            }
+        }
+
+        public void SetItem(int i, T item)
+        {
+            switch (i)
+            {
+                case 0:
+                    _var1 = item;
+                    break;
+                case 1:
+                    _var2 = item;
+                    break;
+                case 2:
+                    _var3 = item;
+                    break;
                 default:
                     throw new IndexOutOfRangeException();
             }
