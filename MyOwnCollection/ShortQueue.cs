@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace MyOwnCollection
 {
@@ -8,7 +9,7 @@ namespace MyOwnCollection
         
         private T[] _array;
         private int _tail; //index of where the next item is added
-        private int _size; //current ammount of items in list
+        private int _size; //current amount of items in list
         public int Count => _size;
         public bool IsReadOnly => false;
 
@@ -24,7 +25,7 @@ namespace MyOwnCollection
 
         public IEnumerator<T> GetEnumerator()
         {
-            
+            return ((IEnumerable<T>)_array).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -43,7 +44,7 @@ namespace MyOwnCollection
         {
             int tmp = index+1;
             if(tmp==_array.Length)
-                tmp == 0;
+                tmp = 0;
             index = tmp;
         }
 
@@ -58,9 +59,12 @@ namespace MyOwnCollection
 
         }
 
-        public void Contains(T item)
+        public bool Contains(T item)
         {
-
+            if (_size == 0)
+                return false;
+            
+            return Array.IndexOf(_array, item) >= 0;
         }
 
         public void CopyTo(T[] array, int index)
@@ -70,7 +74,20 @@ namespace MyOwnCollection
 
         public bool Remove(T item)
         {
+            if (Contains(item))
+            {
+                if(Array.IndexOf(_array, item, _tail)>=0)
+                    _array[Array.IndexOf(_array, item, _tail)] = default;
+                else
+                    _array[Array.IndexOf(_array, item)] = default;  
+                return true;
+            }
+            return false;
+        }
 
+        public override string ToString()
+        {
+            return string.Join(",",_array);
         }
     }
 }
